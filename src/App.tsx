@@ -1,39 +1,24 @@
-import { useState, createContext } from "react";
-import MainContent from "./components/MainContent";
-import Sidebar from "./components/Sidebar";
-import { nanoid } from "nanoid";
-import { NotesProps } from "./components/Interfaces";
+import {
+  Route,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import NotesPage from "./components/NotesPage";
+import AddNote from "./components/AddNote";
+import Layout from "./layouts/Layout";
 
-export const NotesContext = createContext<NotesProps[] | []>([]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<NotesPage />} />
+      <Route path="create-note" element={<AddNote />} />
+    </Route>
+  )
+);
 
 function App() {
-  const [notes, setNotes] = useState<NotesProps[] | []>([]);
-
-  function createNote(): void {
-    const newNote = {
-      id: nanoid(),
-      body: "A new note created by yours truly",
-    };
-
-    setNotes((prevNotes) => [...prevNotes, newNote]);
-  }
-  return (
-    <>
-      <div className="body">
-        <NotesContext.Provider value={notes}>
-          <Sidebar />
-          <MainContent createNote = {createNote}/>
-        </NotesContext.Provider>
-      </div>
-
-      <div className={`no__notes ${notes.length && "now__notes"}`}>
-        <h1>You Have No Notes</h1>
-        <button type="button" onClick={createNote}>
-          Create New Note
-        </button>
-      </div>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -7,7 +7,7 @@ export default function Sidebar() {
             <nav>
                 <ul className="nav__list">
                     <li><NavLink className="nav__link" to= "/">Notes</NavLink></li>
-                    <li><NavLink className="nav__link" to= "/create-note">Create Note</NavLink></li>
+                    <li><NavLink className="nav__link" to= "create-note">Create Note</NavLink></li>
                 </ul>
             </nav>
         </div>
