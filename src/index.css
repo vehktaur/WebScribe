@@ -118,13 +118,14 @@ hr {
 .nav__list {
   align-content: center;
   display: grid;
-  gap: 1em;
+  gap: 0.5em;
   list-style: none;
   min-height: 80%;
 }
 
 .nav__link {
   color: #fff;
+  display: inline-block;
   font-size: 1.1rem;
   text-decoration: none;
   padding: 0.5em 0;
