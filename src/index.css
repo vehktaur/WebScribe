@@ -1,0 +1,263 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --champagne-pink: #efe1d1;
+  --dark-grey: #333;
+  --dark-purple: #331d2c;
+  --raisin-black: #3f2e3e;
+  --raspberry-rose: #a78295;
+  --raspberry: #d31a38;
+  --font-family: "Comic Neue", cursive;
+}
+
+.body {
+  display: flex;
+  position: relative;
+  font-family: "Comic Neue", cursive;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 90%;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Start of Application with No Notes */
+
+.no__notes {
+  align-content: center;
+  background-color: var(--raspberry-rose);
+  font-family: var(--font-family);
+  display: grid;
+  gap: 3rem;
+  height: 100vh;
+  margin-inline: auto;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.no__notes h1 {
+  color: #f5f5f5;
+  font-size: 4rem;
+  text-align: center;
+  text-shadow: 0 3px 8px black;
+}
+
+.no__notes button {
+  background-color: var(--champagne-pink);
+  border: none;
+  border-radius: 2em;
+  color: var(--dark-grey);
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  outline: transparent;
+  padding: 0.8em 1em;
+  transition: filter 500ms, transform 1s, background-color 500ms;
+}
+
+.no__notes button:hover,
+.no__notes button:focus {
+  background-color: var(--raisin-black);
+  color: whitesmoke;
+  filter: drop-shadow(0 0 0.5em var(--champagne-pink));
+  transform: translateY(-0.75rem);
+}
+
+.now__notes {
+  animation: now_you_dont 1s ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes now_you_dont {
+  100% {
+    display: none;
+    top: -110vh;
+  }
+}
+
+/* Sidebar and Navigation */
+
+.sidebar {
+  align-content: start;
+  background-color: var(--raisin-black);
+  color: whitesmoke;
+  display: grid;
+  gap: 2em;
+  min-height: 100vh;
+  padding: 1em;
+  padding-top: 5em;
+  width: 20vw;
+  position: fixed;
+}
+
+.sidebar h2 {
+  align-self: end;
+  font-size: 1.8rem;
+}
+hr {
+  border-radius: 1em;
+  height: 2px;
+  background-color: #fff;
+  border: none;
+  margin-top: -1rem;
+}
+
+.nav__list {
+  align-content: center;
+  display: grid;
+  gap: 1em;
+  list-style: none;
+  min-height: 80%;
+}
+
+.nav__link {
+  color: #fff;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 0.5em 0;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+}
+
+.nav__link.active {
+  color: var(--raspberry);
+  font-weight: bold;
+}
+
+.main_content {
+  display: block;
+  min-height: 100vh;
+  width: 80%;
+  margin-left: auto;
+}
+
+/* Header Component */
+
+header {
+  align-items: center;
+  display: grid;
+  font-size: 1.2rem;
+  font-weight: bold;
+  grid-auto-flow: row;
+  min-height: 60px;
+  padding: 0.5em 0;
+
+  position: relative;
+}
+
+header::before {
+  background: #fff url(./src/assets/header_bg.png) no-repeat;
+  background-size: cover;
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: blur(0px);
+  z-index: -1;
+}
+
+.greeting {
+  color: var(--dark-grey);
+  text-shadow: 0px 4px 6px #fff;
+  font-size: 1.2rem;
+  filter: none;
+}
+
+.date {
+  color: #eee;
+  text-shadow: 0px 4px 6px var(--dark-grey);
+}
+
+/* Main Component */
+main h1 {
+  margin-block: 1em 2em;
+}
+
+/* Create Note Page */
+
+form {
+  max-width: 500px;
+}
+
+fieldset {
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+}
+
+legend {
+  font-weight: bold;
+  font-size: 1rem;
+  font-style: oblique;
+}
+
+.form__group {
+  display: grid;
+  margin-bottom: 2em;
+}
+
+label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+input,
+textarea {
+  padding: 0.5em 1em;
+  border-color: var(--dark-grey);
+  outline: transparent;
+  font-family: var(--font-family);
+  font-size: 1rem;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--dark-grey);
+  font-weight: 600;
+}
+
+textarea {
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+::placeholder {
+  font-size: 1rem;
+}
+
+form button {
+  padding: 0.4em 0.8em;
+  font-size: 1rem;
+  background-color: var(--raspberry);
+  color: #f4f4f4;
+  border-radius: 1em;
+  border: none;
+  outline: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 500ms;
+}
+
+form button:hover {
+  background-color: var(--dark-grey);
+  filter: drop-shadow(0 0 0.5em var(--raspberry));
+}
+
+form button:active {
+  translate: 0 -0.5em;
+}
