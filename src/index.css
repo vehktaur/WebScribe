@@ -148,7 +148,7 @@ header {
   position: relative;
 }
 header::before {
-  background: #fff url(../public/header_bg.png) no-repeat;
+  background: #fff url(/header_bg.png) no-repeat;
   background-size: cover;
   content: "";
   filter: blur(0px);
