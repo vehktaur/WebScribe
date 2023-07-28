@@ -12,7 +12,7 @@ export default function Sidebar() {
             </NavLink>
           </li>
           <li>
-            <NavLink className="nav__link" to="create-note">
+            <NavLink className="nav__link" to="/create-note">
               Create Note
             </NavLink>
           </li>

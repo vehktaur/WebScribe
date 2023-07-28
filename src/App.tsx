@@ -14,7 +14,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<NotesPage />} />
-      <Route path="create-note" element={<AddNote/>} />
+      <Route path="/create-note" element={<AddNote/>} />
     </Route>
   )
 );
