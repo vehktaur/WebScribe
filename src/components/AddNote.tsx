@@ -1,22 +1,68 @@
+import { FormEvent, useState, ChangeEvent } from "react";
+import { useOutletContext, Link } from "react-router-dom";
+import { INoteData } from "./Interfaces";
+
 export default function AddNote() {
+  const { createNote } = useOutletContext();
+
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+  }
+
+  const [noteData, setNoteData] = useState<INoteData>({});
+
+  function handleChange(
+    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+
+    setNoteData((prevNoteData) => ({
+      ...prevNoteData,
+      [name]: value,
+    }));
+  }
+
+  function formSubmit() {
+    createNote(noteData.note__title, noteData.note__details);
+  }
+
   return (
     <div className="container">
-      <h1>Create Notes 📝</h1>
+      <h1>Create Note 📝</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <fieldset>
-            <legend>Whats on your mind</legend>
+          <legend>Whats on your mind</legend>
 
-            <div className="form__group">
-                <label htmlFor="add__note__title">Title</label>
-                <input type="text" name="note__title" id="add__note__title" placeholder="Enter your title"/>
-            </div>
+          <div className="form__group">
+            <label htmlFor="add__note__title">Title</label>
+            <input
+              type="text"
+              name="note__title"
+              id="add__note__title"
+              placeholder="Enter your title"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form__group">
-                <label htmlFor="add__note">Details</label>
-                <textarea name="note_details" id="add__note" cols="30" rows="10" placeholder="Write your notes"></textarea>
-            </div>
-            <button>Create Note</button>
+          <div className="form__group">
+            <label htmlFor="add__note">Details</label>
+            <textarea
+              name="note__details"
+              id="add__note"
+              className="custom__scrollbar"
+              cols={30}
+              rows={10}
+              placeholder="Write your notes"
+              onChange={handleChange}
+              value={noteData.note__details}
+            ></textarea>
+          </div>
+          <button onClick={formSubmit}>
+            <Link className="form__link" to="/">
+              Create Note
+            </Link>
+          </button>
         </fieldset>
       </form>
     </div>

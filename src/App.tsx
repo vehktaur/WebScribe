@@ -8,11 +8,13 @@ import NotesPage from "./components/NotesPage";
 import AddNote from "./components/AddNote";
 import Layout from "./layouts/Layout";
 
+
+//React router
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<NotesPage />} />
-      <Route path="create-note" element={<AddNote />} />
+      <Route path="create-note" element={<AddNote/>} />
     </Route>
   )
 );
