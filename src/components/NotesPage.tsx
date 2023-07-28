@@ -1,7 +1,8 @@
 import { useOutletContext, Link } from "react-router-dom";
+import { NotesProps } from "./Interfaces";
 
 export default function NotesPage() {
-  const { notes }= useOutletContext();
+  const { notes }= useOutletContext() as { notes: NotesProps[] };;
 
   return (
     <div>

@@ -1,9 +1,9 @@
 import { FormEvent, useState, ChangeEvent } from "react";
 import { useOutletContext, Link } from "react-router-dom";
-import { INoteData } from "./Interfaces";
+import { ICreateNote, INoteData } from "./Interfaces";
 
 export default function AddNote() {
-  const { createNote } = useOutletContext();
+  const { createNote } = useOutletContext() as ICreateNote;
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();

@@ -11,3 +11,7 @@ export interface INoteData {
 export interface IPreview {
     createNote: () => void;
 }
+
+export interface ICreateNote {
+    createNote: (title: string | undefined, text: string | undefined) => void;
+  }
