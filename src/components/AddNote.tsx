@@ -58,7 +58,7 @@ export default function AddNote() {
               value={noteData.note__details}
             ></textarea>
           </div>
-          <button onClick={formSubmit}>
+          <button className="btn-form" onClick={formSubmit}>
             <Link className="form__link" to="/">
               Create Note
             </Link>
