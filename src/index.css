@@ -16,9 +16,11 @@
   --raspberry-rose: #a78295;
 }
 .body {
-  display: flex;
+  display: grid;
+  grid-template-columns: 50px 1fr;
   font-family: "Comic Neue", cursive;
   position: relative;
+  min-height: 100vh;
 }
 .container {
   margin: 0 auto;
@@ -29,7 +31,7 @@
   display: flex;
   justify-content: space-between;
 }
-/* Start of Application with No Notes */
+/*********** No Notes Overlay ***********/
 .no__notes {
   align-content: center;
   background-color: var(--raspberry-rose);
@@ -62,17 +64,16 @@
   position: relative;
   transition: transform 850ms;
 }
-
 .btn-new::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  filter: drop-shadow(0 0 0.5em var(--champagne-pink));
   background-color: var(--raisin-black);
   border-radius: inherit;
+  content: "";
+  filter: drop-shadow(0 0 0.5em var(--champagne-pink));
+  inset: 0;
   opacity: 0;
-  z-index: 0;
+  position: absolute;
   transition: opacity 500ms;
+  z-index: 0;
 }
 .btn-new:hover::after,
 .btn-new:focus::after {
@@ -102,21 +103,23 @@
   }
   100% {
     display: none;
-    transform: translateY(-1000px);
+    transform: translateY(-110vh);
   }
 }
-/* Sidebar and Navigation */
+
+/****************** LAYOUT ******************/
+
+/*********** Sidebar / Navigation ***********/
 .sidebar {
   align-content: start;
   background-color: var(--raisin-black);
   color: whitesmoke;
   display: grid;
   gap: 2em;
-  height: 100vh;
   padding: 1em;
-  padding-top: 5em;
-  position: fixed;
-  width: 20vw;
+  position: sticky;
+  top: 0;
+  bottom: 0;
 }
 .sidebar h2 {
   align-self: end;
@@ -127,7 +130,7 @@ hr {
   border: none;
   border-radius: 1em;
   height: 2px;
-  margin-top: -1rem;
+  margin-top: -1.2rem;
 }
 .nav__list {
   align-content: center;
@@ -150,14 +153,11 @@ hr {
   color: var(--raspberry);
   font-weight: bold;
 }
-.main_content {
-  display: block;
-  margin-left: auto;
+.main__content {
   min-height: 100vh;
   padding-bottom: 3rem;
-  width: 80%;
 }
-/* Header Component */
+/*********** Header Component ***********/
 header {
   align-items: center;
   display: grid;
@@ -188,13 +188,104 @@ header::before {
   color: #ddd;
   text-shadow: 0px 4px 6px var(--dark-grey);
 }
-/* Main Component */
+
+/*********** Footer Component ***********/
+
+footer {
+  align-items: center;
+  bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  right: 2rem;
+}
+/*********** Main Component ***********/
 main h1 {
   margin-block: 1em 1.4em;
+  color: var(--raisin-black);
 }
-/* Create Note Page */
+
+/**************** ROUTES ****************/
+
+/********* Notes Page *********/
+
+.notes__page {
+  background: url(/notes_page_bg.gif) no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-height: 80vh;
+}
+
+.note__layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.note__card {
+  background: #ffffffe9;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  color: var(--dark-grey);
+  display: flex;
+  flex-flow: column nowrap;
+  font-family: inherit;
+  height: 250px;
+  max-width: 100%;
+  padding: 1rem;
+  transition: box-shadow 800ms, background 1s;
+}
+.note__card h2 {
+  border-bottom: 1px solid var(--dark-grey);
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  padding: 0.5em 0 0.2em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.note__card:hover {
+  background: #ffffffff;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+.note__body-container {
+  overflow-y: auto;
+  padding-bottom: 0.5em;
+  padding-right: 0.2em;
+  visibility: hidden;
+}
+.note__body-container:hover,
+.note__body {
+  visibility: visible;
+}
+.note__body {
+  white-space: pre-wrap;
+}
+.custom__scrollbar::-webkit-scrollbar {
+  height: 0.3em;
+  width: 0.3em;
+}
+.custom__scrollbar::-webkit-scrollbar-track {
+  margin-block: 0.5em;
+}
+.custom__scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--dark-grey);
+  border-radius: 8px;
+}
+.custom__scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #494949;
+}
+
+/********* Add Note Page *********/
+
+.add-note__page {
+  background: url(/add_note_bg.gif) no-repeat;
+  background-position: center;
+  background-size: contain;
+  min-height: 80vh;
+}
 form {
   max-width: 500px;
+  background: #ffffffe9;
 }
 fieldset {
   border-radius: 0.5rem;
@@ -249,12 +340,12 @@ textarea {
   background-color: var(--dark-grey);
   border-radius: inherit;
   content: "";
-  position: absolute;
-  inset: 0;
   filter: drop-shadow(0 0 0.2em var(--raspberry));
-  z-index: 0;
+  inset: 0;
   opacity: 0;
+  position: absolute;
   transition: opacity 500ms;
+  z-index: 0;
 }
 .btn-form:hover::after,
 .btn-form:focus::after {
@@ -265,79 +356,17 @@ textarea {
 }
 .form__link {
   color: white;
-  position: relative;
   display: inline-block;
   font-size: 1rem;
-  padding: 0.5em 1em;
-  text-decoration: none;
   outline: transparent;
+  padding: 0.5em 1em;
+  position: relative;
+  text-decoration: none;
   z-index: 1;
 }
-.note__layout {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-}
-.note__card {
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  color: var(--dark-grey);
-  display: flex;
-  flex-flow: column nowrap;
-  height: 250px;
-  max-width: 100%;
-  padding: 1rem;
-  transition: box-shadow 800ms;
-  font-family: inherit;
-}
-.note__card h2 {
-  border-bottom: 1px solid var(--dark-grey);
-  padding: 0.5em 0 0.2em;
-  margin-bottom: 0.5rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.note__card:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
-    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-}
-.note__body-container {
-  overflow-y: auto;
-  padding-bottom: 0.5em;
-  padding-right: 0.2em;
-  visibility: hidden;
-}
-.note__body-container:hover,
-.note__body {
-  visibility: visible;
-}
-.note__body {
-  white-space: pre-wrap;
-}
 
-.custom__scrollbar::-webkit-scrollbar {
-  width: 0.3em;
-  height: 0.3em;
-}
-
-.custom__scrollbar::-webkit-scrollbar-track {
-  margin-block: 0.5em;
-}
-
-.custom__scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--dark-grey);
-  border-radius: 8px;
-}
-
-.custom__scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #494949;
-}
-footer {
-  align-items: center;
-  bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  right: 2rem;
+@media (min-width: 768px) {
+  .body {
+    grid-template-columns: clamp(200px, 20vw, 300px) 1fr;
+  }
 }

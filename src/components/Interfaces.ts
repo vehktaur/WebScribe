@@ -8,10 +8,6 @@ export interface INoteData {
     note__details?: string;
 }
 
-export interface IPreview {
-    createNote: () => void;
-}
-
 export interface ICreateNote {
     createNote: (title: string | undefined, text: string | undefined) => void;
   }

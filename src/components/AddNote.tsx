@@ -5,7 +5,7 @@ import { ICreateNote, INoteData } from "./Interfaces";
 export default function AddNote() {
   const { createNote } = useOutletContext() as ICreateNote;
 
-  function handleSubmit(event: FormEvent) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
   }
 
@@ -27,7 +27,7 @@ export default function AddNote() {
   }
 
   return (
-    <div className="container">
+    <div className="container add-note__page">
       <h1>Create Note 📝</h1>
 
       <form onSubmit={handleSubmit}>
