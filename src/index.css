@@ -366,6 +366,7 @@ textarea {
 }
 
 @media (min-width: 768px) {
+  
   .body {
     grid-template-columns: clamp(200px, 20vw, 300px) 1fr;
   }
