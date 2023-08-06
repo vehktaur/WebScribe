@@ -4,7 +4,7 @@ export default function Sidebar() {
     <aside>
       <div className="container">
         <div className="sidebar">
-          <h2>Sidebar</h2>
+          <h2>WebScribe</h2>
           <hr />
           <nav>
             <ul className="nav__list">
