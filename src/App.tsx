@@ -18,7 +18,7 @@ const router = createBrowserRouter(
           is placed in the layout, depending on the path
       */}
       <Route index element={<NotesPage />} />
-      <Route path="/create-note" element={<AddNote />} />
+      <Route path="create-note" element={<AddNote />} />
     </Route>
   )
 );

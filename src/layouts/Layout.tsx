@@ -59,9 +59,9 @@ export default function Layout() {
               </div>
             </main>
 
-            {/* <footer>
+            <footer>
               <small> &copy; Copyright Reserved @Akhi's Dev</small>
-            </footer> */}
+            </footer>
           </section>
         </NotesContext.Provider>
       </div>

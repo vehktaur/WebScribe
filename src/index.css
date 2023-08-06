@@ -14,11 +14,15 @@
   --raisin-black: #3f2e3e;
   --raspberry: #d31a38;
   --raspberry-rose: #a78295;
+  --bg-white: #fff;
+  --general-fs: clamp(0.75rem, 2vw, 1rem);
+  --big-fs: clamp(0.9rem, 2vw, 1.1rem);
 }
 .body {
   display: grid;
   grid-template-columns: 50px 1fr;
   font-family: "Comic Neue", cursive;
+  font-size: var(--general-fs);
   position: relative;
   min-height: 100vh;
 }
@@ -58,7 +62,7 @@
   border-radius: 2em;
   color: var(--dark-grey);
   cursor: pointer;
-  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  font-size:var(--big-fs);
   font-weight: bold;
   outline: transparent;
   position: relative;
@@ -110,16 +114,18 @@
 /****************** LAYOUT ******************/
 
 /*********** Sidebar / Navigation ***********/
-.sidebar {
-  align-content: start;
+aside {
   background-color: var(--raisin-black);
   color: whitesmoke;
-  display: grid;
-  gap: 2em;
-  padding: 1em;
+  padding-top: 1.5em;
   position: sticky;
   top: 0;
   bottom: 0;
+}
+
+.sidebar {
+  display: grid;
+  gap: 2em;
 }
 .sidebar h2 {
   align-self: end;
@@ -142,7 +148,7 @@ hr {
 .nav__link {
   color: #fff;
   display: inline-block;
-  font-size: 1.1rem;
+  font-size: var(--big-fs);
   padding: 0.5em 0;
   text-decoration: none;
 }
@@ -153,35 +159,32 @@ hr {
   color: var(--raspberry);
   font-weight: bold;
 }
-.main__content {
-  min-height: 100vh;
-  padding-bottom: 3rem;
-}
+
 /*********** Header Component ***********/
 header {
   align-items: center;
+  background: var(--bg-white) url(/header_bg.png) no-repeat;
+  background-size: cover;
   display: grid;
   font-family: "Tsukimi Rounded", sans-serif;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: var(--general-font);
   font-weight: bold;
   grid-auto-flow: row;
   min-height: 60px;
   padding: 0.5em 0;
   position: relative;
 }
-header::before {
-  background: #fff url(/header_bg.png) no-repeat;
-  background-size: cover;
+/* header::before {
   content: "";
   filter: blur(0px);
   inset: 0;
   position: absolute;
-  z-index: -1;
-}
+  z-index: 0;
+} */
 .greeting {
   color: var(--dark-grey);
   filter: none;
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-size: var(--big-fs);
   text-shadow: 0px 4px 6px #fff;
 }
 .date {
@@ -201,8 +204,13 @@ footer {
 }
 /*********** Main Component ***********/
 main h1 {
-  margin-block: 1em 1.4em;
+  padding-block: 1em 1.4em;
   color: var(--raisin-black);
+}
+
+.main__content {
+  min-height: 100vh;
+  padding-bottom: 3rem;
 }
 
 /**************** ROUTES ****************/
@@ -236,9 +244,12 @@ main h1 {
 }
 .note__card h2 {
   border-bottom: 1px solid var(--dark-grey);
+  font-size: var(--big-fs);
+  background-color: #eee;
+  border-radius: 8px 8px 0 0;
   margin-bottom: 0.5rem;
   overflow: hidden;
-  padding: 0.5em 0 0.2em;
+  padding: 0.5em 0.1em 0.2em;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -292,7 +303,7 @@ fieldset {
   padding: 2rem 1rem;
 }
 legend {
-  font-size: 1rem;
+  font-size: var(--general-fs);
   font-style: oblique;
   font-weight: bold;
 }
@@ -301,7 +312,7 @@ legend {
   margin-bottom: 2em;
 }
 label {
-  font-size: 1.2rem;
+  font-size: var(--big-fs);
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
@@ -309,7 +320,7 @@ input,
 textarea {
   border-color: var(--dark-grey);
   font-family: var(--font-family);
-  font-size: 1rem;
+  font-size: var(--general-fs);
   outline: transparent;
   padding: 0.5em 1em;
 }
@@ -320,11 +331,10 @@ input {
 }
 textarea {
   border-radius: 0.5rem;
-  font-size: 1rem;
   resize: vertical;
 }
 ::placeholder {
-  font-size: 1rem;
+  font-size: inherit;
 }
 .btn-form {
   background-color: var(--raspberry);
@@ -357,7 +367,7 @@ textarea {
 .form__link {
   color: white;
   display: inline-block;
-  font-size: 1rem;
+  font-size: var(--general-fs);
   outline: transparent;
   padding: 0.5em 1em;
   position: relative;
@@ -366,7 +376,6 @@ textarea {
 }
 
 @media (min-width: 768px) {
-  
   .body {
     grid-template-columns: clamp(200px, 20vw, 300px) 1fr;
   }
