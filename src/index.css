@@ -6,15 +6,19 @@
   margin: 0;
   padding: 0;
 }
+
 :root {
+  --accent: #9553a0;
+  --accent-light: #ce94d8;
   --champagne-pink: #efe1d1;
   --dark-grey: #333;
   --dark-purple: #331d2c;
+  --footer-border: lightgray;
   --font-family: "Comic Neue", cursive;
-  --raisin-black: #3f2e3e;
+  --aside-bg: #3f2e3e; /* raisin-black */
   --raspberry: #d31a38;
   --raspberry-rose: #a78295;
-  --bg-white: #fff;
+  --main-bg-clr: #333;
   --general-fs: clamp(0.75rem, 2vw, 1rem);
   --big-fs: clamp(0.9rem, 2vw, 1.1rem);
 }
@@ -62,7 +66,7 @@
   border-radius: 2em;
   color: var(--dark-grey);
   cursor: pointer;
-  font-size:var(--big-fs);
+  font-size: var(--big-fs);
   font-weight: bold;
   outline: transparent;
   position: relative;
@@ -115,12 +119,9 @@
 
 /*********** Sidebar / Navigation ***********/
 aside {
-  background-color: var(--raisin-black);
+  background-color: var(--aside-bg);
   color: whitesmoke;
   padding-top: 1.5em;
-  position: sticky;
-  top: 0;
-  bottom: 0;
 }
 
 .sidebar {
@@ -163,14 +164,13 @@ hr {
 /*********** Header Component ***********/
 header {
   align-items: center;
-  background: var(--bg-white) url(/header_bg.png) no-repeat;
+  background: url(/header_bg.png) no-repeat;
   background-size: cover;
   display: grid;
   font-family: "Tsukimi Rounded", sans-serif;
   font-size: var(--general-font);
   font-weight: bold;
   grid-auto-flow: row;
-  min-height: 60px;
   padding: 0.5em 0;
   position: relative;
 }
@@ -195,14 +195,18 @@ header {
 /*********** Footer Component ***********/
 
 footer {
-  align-items: center;
-  bottom: 1rem;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  right: 2rem;
+  border-top: 0.5px dashed var(--footer-border);
+  padding: 0.5rem 1rem;
+  text-align: end;
 }
+
 /*********** Main Component ***********/
+main {
+  background: url(/notes_page_bg.gif) no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 main h1 {
   padding-block: 1em 1.4em;
   color: var(--raisin-black);
@@ -210,19 +214,13 @@ main h1 {
 
 .main__content {
   min-height: 100vh;
-  padding-bottom: 3rem;
+  display: grid;
+  grid-template-rows: 60px 1fr;
 }
 
 /**************** ROUTES ****************/
 
 /********* Notes Page *********/
-
-.notes__page {
-  background: url(/notes_page_bg.gif) no-repeat;
-  background-position: center;
-  background-size: contain;
-  min-height: 80vh;
-}
 
 .note__layout {
   display: grid;
@@ -243,9 +241,9 @@ main h1 {
   transition: box-shadow 800ms, background 1s;
 }
 .note__card h2 {
-  border-bottom: 1px solid var(--dark-grey);
+  border-bottom: 3.5px dotted #555;
   font-size: var(--big-fs);
-  background-color: #eee;
+  background-color: #fff;
   border-radius: 8px 8px 0 0;
   margin-bottom: 0.5rem;
   overflow: hidden;
@@ -288,17 +286,11 @@ main h1 {
 
 /********* Add Note Page *********/
 
-.add-note__page {
-  background: url(/add_note_bg.gif) no-repeat;
-  background-position: center;
-  background-size: contain;
-  min-height: 80vh;
-}
 form {
   max-width: 500px;
-  background: #ffffffe9;
 }
 fieldset {
+  background: #ffffffe9;
   border-radius: 0.5rem;
   padding: 2rem 1rem;
 }
@@ -340,9 +332,9 @@ textarea {
   background-color: var(--raspberry);
   border: none;
   border-radius: 1rem;
-  color: #f4f4f4;
   cursor: pointer;
-  font-weight: bold;
+  font-family: inherit;
+  font-weight: 500;
   outline: transparent;
   position: relative;
 }

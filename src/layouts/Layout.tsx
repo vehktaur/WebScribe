@@ -58,7 +58,6 @@ export default function Layout() {
                 <Outlet context={{ createNote, notes }} />
               </div>
             </main>
-
             <footer>
               <small> &copy; Copyright Reserved @Akhi's Dev</small>
             </footer>
