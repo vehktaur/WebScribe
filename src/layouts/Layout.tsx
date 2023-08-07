@@ -55,7 +55,7 @@ export default function Layout() {
             <main>
               <div className="container">
                 {/* Routes get displayed here */}
-                <Outlet context={{ createNote, notes }} />
+                <Outlet context={{ createNote, notes, setNotes }} />
               </div>
             </main>
             <footer>

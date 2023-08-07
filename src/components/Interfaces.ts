@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export interface NotesProps {
     id: string;
     title: string;
@@ -11,3 +13,9 @@ export interface INoteData {
 export interface ICreateNote {
     createNote: (title: string | undefined, text: string | undefined) => void;
   }
+
+export interface IEditNote {
+    updateNote?: () => void;
+    currentNote?: NotesProps ;
+    setCurrentNote:(value: SetStateAction<NotesProps>) => void
+}
