@@ -11,9 +11,7 @@ export default function NotesPage() {
     setNotes: Dispatch<SetStateAction<NotesProps[] | []>>;
   };
 
-  const [currentNote, setCurrentNote] = useState<NotesProps>(
-    notes[0]
-  );
+  const [currentNote, setCurrentNote] = useState<NotesProps>(notes[0]);
 
   const [noEdit, setNoEdit] = useState(true);
 
@@ -24,26 +22,48 @@ export default function NotesPage() {
 
   function editNote(noteId: string) {
     setNoEdit((prevState) => !prevState);
-    const theCurrentNote = notes.find((note) => note.id == noteId) as SetStateAction<NotesProps>;
+    const theCurrentNote = notes.find(
+      (note) => note.id == noteId
+    ) as SetStateAction<NotesProps>;
     setCurrentNote(theCurrentNote);
   }
   function updateNote() {
     setNoEdit((prevState) => !prevState);
-    notes.map((note) => {
-      if (note.id == currentNote?.id) {
-        note.body = currentNote.body;
-        note.title = currentNote.title;
-        return note;
-      } else {
-        return note;
-      }
+
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => {
+        if (note.id == currentNote?.id) {
+          note.body = currentNote.body;
+          note.title = currentNote.title;
+          return note;
+        } else {
+          return note;
+        }
+      })
+    );
+
+    setNotes((prevNotes) => {
+      prevNotes.sort((noteA, noteB) => {
+        if (noteA.id === currentNote.id) {
+          return -1;
+        } else if (noteB.id === currentNote.id) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+      return prevNotes;
     });
   }
 
   return (
     <div className="notes__page">
       <div className={`overlay ${noEdit && "no-edit"}`}>
-        <EditNote updateNote={updateNote} currentNote={currentNote} setCurrentNote = {setCurrentNote} />
+        <EditNote
+          updateNote={updateNote}
+          currentNote={currentNote}
+          setCurrentNote={setCurrentNote}
+        />
       </div>
       <h1>NOTES</h1>
       {notes.length < 1 && (
