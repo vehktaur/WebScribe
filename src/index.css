@@ -205,6 +205,7 @@ main {
   background: url(/notes_page_bg.gif) no-repeat;
   background-position: center;
   background-size: contain;
+  padding-bottom: 1rem;
 }
 
 main h1 {
@@ -333,7 +334,6 @@ textarea {
 input {
   border: none;
   border-bottom: 1px solid var(--dark-grey);
-  font-weight: 600;
 }
 textarea {
   border-radius: 0.5rem;
