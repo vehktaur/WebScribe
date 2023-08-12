@@ -13,24 +13,35 @@ export default function NotesPage() {
 
   const [currentNote, setCurrentNote] = useState<NotesProps>(notes[0]);
 
-  const [noEdit, setNoEdit] = useState(true);
+  const [noEdit, setNoEdit] = useState(true); //Boolean State for opening/closing the edit note page
 
   function deleteNote(noteId: string) {
+    //this function filters through the notes array and only returns/leaves note objects
+    //whose ID is not the currentNote's (note being clicked) ID
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== noteId));
-    console.log("works", noteId);
   }
 
   function editNote(noteId: string) {
+    //This opens the edit form component
     setNoEdit((prevState) => !prevState);
+
+    //here we find the current note in the notes array using its ID
+    //and set it to the currentNote state
     const theCurrentNote = notes.find(
       (note) => note.id == noteId
     ) as SetStateAction<NotesProps>;
     setCurrentNote(theCurrentNote);
   }
+
   function updateNote() {
+    //This closes the edit form component
     setNoEdit((prevState) => !prevState);
 
-    setNotes((prevNotes) =>
+    //This actually updates the current note
+    setNotes((prevNotes) => {
+      //Here we map through the notes array and when the current note is found
+      //we update it with the new form data gotten from the edit form component
+
       prevNotes.map((note) => {
         if (note.id == currentNote?.id) {
           note.body = currentNote.body;
@@ -39,10 +50,11 @@ export default function NotesPage() {
         } else {
           return note;
         }
-      })
-    );
+      });
 
-    setNotes((prevNotes) => {
+      //after updating the current note, we sort through the notes array to bring
+      //the updated note to the start of the array, making it the most recent note
+
       prevNotes.sort((noteA, noteB) => {
         if (noteA.id === currentNote.id) {
           return -1;

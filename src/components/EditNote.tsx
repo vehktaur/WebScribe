@@ -20,18 +20,18 @@ export default function EditNote(Props: IEditNote) {
 
   return (
     <div className="edit-note__page">
-      <h2>Edit Note </h2>
+      <h2>Edit Note</h2>
 
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Make some changes</legend>
 
           <div className="form__group">
-            <label htmlFor="add__note__title">Title</label>
+            <label htmlFor="edit__note__title">Title</label>
             <input
               type="text"
               name="title"
-              id="add__note__title"
+              id="edit__note__title"
               placeholder="Edit your title"
               onChange={handleChange}
               value={Props.currentNote?.title}
@@ -39,10 +39,10 @@ export default function EditNote(Props: IEditNote) {
           </div>
 
           <div className="form__group">
-            <label htmlFor="add__note">Details</label>
+            <label htmlFor="edit__note">Details</label>
             <textarea
               name="body"
-              id="add__note"
+              id="edit__note"
               className="custom__scrollbar"
               cols={30}
               rows={10}

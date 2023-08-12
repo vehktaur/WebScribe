@@ -22,10 +22,9 @@ export default function Layout() {
     title = "Title",
     body = "A new note created by yours truly"
   ) {
-    //Create note function which creates a new note object
-    //and adds it to the notes Array using the setNotes setter
-    //function. It is initializes the note title and body with
-    //default values
+    //Create note function which creates a new note object and adds it
+    //to the notes Array using the setNotes setter function. It 
+    //initializes the note title and body with default values
 
     const newNote = {
       id: nanoid(),
@@ -36,8 +35,7 @@ export default function Layout() {
   }
 
   function openApp() {
-    //function which removes the no-notes overlay upon
-    //new user entrance
+    //function which removes the no-notes overlay for first timers
 
     setIsNew((prevBoolean) => !prevBoolean);
   }
