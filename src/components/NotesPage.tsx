@@ -66,6 +66,8 @@ export default function NotesPage() {
       });
       return prevNotes;
     });
+
+    localStorage.setItem("WebScribeNotes", JSON.stringify(notes));
   }
 
   return (
