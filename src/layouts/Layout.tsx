@@ -1,5 +1,5 @@
-import { useState, createContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { useState, createContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { nanoid } from "nanoid";
 
 import { NotesProps } from "../components/Interfaces";
@@ -10,20 +10,25 @@ import Sidebar from "../components/Sidebar";
 export const NotesContext = createContext<NotesProps[] | []>([]);
 
 export default function Layout() {
-  // State variables declaration
-
   //Notes Array and setter function that will hold each note object
-  const [notes, setNotes] = useState<NotesProps[] | []>([]);
-  // State variable which determines whether or not to show the no-note
-  // overlay if the notes array is empty
-  const [isNew, setIsNew] = useState<boolean>(true);
+
+  const storedNotes: NotesProps[] = JSON.parse(
+    localStorage.getItem("WebScribeNotes") as string
+  );
+  const [notes, setNotes] = useState<NotesProps[] | []>(
+    storedNotes ? storedNotes : []
+  );
+
+  useEffect(() => {
+    localStorage.setItem("WebScribeNotes", JSON.stringify(notes));
+  }, [notes]);
 
   function createNote(
     title = "Title",
     body = "A new note created by yours truly"
   ) {
     //Create note function which creates a new note object and adds it
-    //to the notes Array using the setNotes setter function. It 
+    //to the notes Array using the setNotes setter function. It
     //initializes the note title and body with default values
 
     const newNote = {
@@ -34,11 +39,15 @@ export default function Layout() {
     setNotes((prevNotes) => [...prevNotes, newNote]);
   }
 
-  function openApp() {
-    //function which removes the no-notes overlay for first timers
-
-    setIsNew((prevBoolean) => !prevBoolean);
-  }
+  /* 
+    const [firstTimer, toggleFirstTimer] = useState<boolean>(
+     storedBoolean ? storedBoolean : true
+    );
+    function openApp() {
+     toggleFirstTimer((prevBoolean) => !prevBoolean);
+     localStorage.setItem("firstTimer", JSON.stringify(false));
+   }
+  */
 
   return (
     <>
@@ -64,16 +73,21 @@ export default function Layout() {
       </div>
 
       {/* No-notes Overlay */}
-      <div
-        className={`no__notes ${(!isNew || notes.length > 0) && "now__notes"}`}
-      >
-        <h1>You Have No Notes</h1>
-        <button className="btn-new" type="button" onClick={openApp}>
-          <Link className="link" to="create-note">
-            Create New Note
-          </Link>
-        </button>
-      </div>
+
+      { /*notes.length && (
+        <div
+          className={`no__notes ${
+            (!firstTimer || notes.length > 0) && "now__notes"
+          }`}
+        >
+          <h1>You Have No Notes</h1>
+          <button className="btn-new" type="button" onClick={openApp}>
+            <Link className="link" to="create-note">
+              Create New Note
+            </Link>
+          </button>
+        </div>
+        ) */}
     </>
   );
 }
