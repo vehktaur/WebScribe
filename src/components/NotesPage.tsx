@@ -1,11 +1,12 @@
-import { useOutletContext, Link } from "react-router-dom";
-import { NotesProps } from "./Interfaces";
-import delete_icon from "../assets/delete.png";
-import edit_icon from "../assets/edit.png";
-import { Dispatch, SetStateAction, useState } from "react";
-import EditNote from "./EditNote";
+import { useOutletContext, Link } from 'react-router-dom';
+import { NotesProps } from './Interfaces';
+import delete_icon from '../assets/delete.png';
+import edit_icon from '../assets/edit.png';
+import { Dispatch, SetStateAction, useState } from 'react';
+import EditNote from './EditNote';
 
 export default function NotesPage() {
+  //get the notes state variable and state setter from the layout
   const { notes, setNotes } = useOutletContext() as {
     notes: NotesProps[];
     setNotes: Dispatch<SetStateAction<NotesProps[] | []>>;
@@ -67,12 +68,12 @@ export default function NotesPage() {
       return prevNotes;
     });
 
-    localStorage.setItem("WebScribeNotes", JSON.stringify(notes));
+    localStorage.setItem('WebScribeNotes', JSON.stringify(notes));
   }
 
   return (
     <div className="notes__page">
-      <div className={`overlay ${noEdit && "no-edit"}`}>
+      <div className={`overlay ${noEdit && 'no-edit'}`}>
         <EditNote
           updateNote={updateNote}
           currentNote={currentNote}
